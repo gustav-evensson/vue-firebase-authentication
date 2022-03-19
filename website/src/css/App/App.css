@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#app {
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+  background: #222831;
+}
+
+.main {
+  height: 100vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main h1 {
+  margin-top: 20px;
+}
+
+form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 300px;
+  margin-top: 50px;
+}
+
+form p {
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.687);
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+form input {
+  height: 50px;
+  margin-bottom: 20px;
+  background: #393E46;
+  border: none;
+  border-bottom: #00B594 2px solid;
+  padding-left: 15px;
+  font-size: 16px;
+  outline: none;
+  color: white;
+  -webkit-transition: border, 0.2s;
+  transition: border, 0.2s;
+  border-radius: 0px;
+}
+
+form input:hover {
+  border-bottom: #00FFB2 2px solid;
+}
+
+form button {
+  height: 50px;
+  margin-top: 20px;
+  background: -webkit-gradient(linear, left top, right top, color-stop(20%, #00FFB2), color-stop(90%, #00B594));
+  background: linear-gradient(to right, #00FFB2 20%, #00B594 90%);
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: #222831;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 10px #222831;
+          box-shadow: 0px 0px 10px #222831;
+  -webkit-transition: all, 0.2s;
+  transition: all, 0.2s;
+}
+
+form button:hover {
+  -webkit-box-shadow: 0px 0px 10px #00ffb361;
+          box-shadow: 0px 0px 10px #00ffb361;
+}
+
+form a {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin-top: 20px;
+  color: #00FFB2;
+}
+
+#error {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 300px;
+  height: 100px;
+  background-color: #f76b6b;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 20px;
+  padding-bottom: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#error button {
+  cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  background: transparent;
+  color: #fff;
+}
+
+#error button:hover {
+  -webkit-transition: background, 0.3s;
+  transition: background, 0.3s;
+  background-color: rgba(255, 255, 255, 0.31);
+  color: #fff;
+}
+/*# sourceMappingURL=App.css.map */
