@@ -1,0 +1,106 @@
+$PRIMARY: #00FFB2;
+$SECONDARY: #00B594;
+$BACKGROUND: #222831;
+$SECBACKGROUND: #393E46;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#app {
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+  background: $BACKGROUND;
+}
+.main{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1{
+    margin-top: 20px;
+  }
+}
+form{
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-top: 50px;
+  p{
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.687);
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+  }
+  input{
+    height: 50px;
+    margin-bottom: 20px;
+    background: $SECBACKGROUND;
+    border: none;
+    border-bottom: $SECONDARY 2px solid;
+    padding-left: 15px;
+    font-size: 16px;
+    outline: none;
+    color: white;
+    transition: border, 0.2s;
+    border-radius: 0px;
+  }
+  input:hover{
+    border-bottom: $PRIMARY 2px solid;
+  }
+  button{
+    height: 50px;
+    margin-top: 20px;
+    background: linear-gradient(to right,$PRIMARY 20%, $SECONDARY 90%);
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: $BACKGROUND;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px $BACKGROUND;
+    transition: all, 0.2s;
+  }
+  button:hover{
+    box-shadow: 0px 0px 10px #00ffb361;
+  }
+  a{
+    align-self: center;
+    margin-top: 20px;
+    color: $PRIMARY
+  }
+}
+#error{
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 100px;
+  background-color: #f76b6b;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  padding-bottom: 10px;
+  align-items: center;
+  flex-direction: column;
+  button{
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    background: transparent;
+    color: #fff;
+  }
+  button:hover{
+    transition: background, 0.3s;
+    background-color: rgba(255, 255, 255, 0.31);
+    color: #fff;
+  }
+}
