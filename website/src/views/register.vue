@@ -11,12 +11,22 @@
       </div>
       <h1>Register</h1>
       <form @submit.prevent="register()">
+        <div>
           <p>Email</p>
-          <input type="email" placeholder="Enter your email..." v-model="email">
+          <input id="email" type="email" placeholder="Enter your email..." v-model="email">
+          <p id="emailError" v-if="this.emailError">{{emailErrorMsg}}</p>
+        </div>
+        <div>
           <p>Password</p>
-          <input type="password" placeholder="Enter your password..." v-model="password">
+          <input id="password" type="password" placeholder="Enter your password..." v-model="password">
+          <p id="pwdError" v-if="this.pwdError">{{pwdErrorMsg}}</p>
+        </div>
+        <div>
           <p>Confirm your password</p>
-          <input type="password" placeholder="Confirm your password..." v-model="passwordCheck">
+          <input id="passwordCheck" type="password" placeholder="Confirm your password..." v-model="passwordCheck">
+          <p id="pwdCheckError" v-if="this.pwdCheckError">{{pwdCheckErrorMsg}}</p>
+        </div>
+          
           <button id="register" type="submit">Register</button>
           <a href="/login">login here</a>
       </form>
@@ -38,7 +48,12 @@ export default {
       password: '',
       passwordCheck: '',
       user: '',
-      errorMessage: ''
+      emailError: false,
+      emailErrorMsg: '',
+      pwdError: false,
+      pwdErrorMsg: '',
+      pwdCheckError: false,
+      pwdCheckErrorMsg: ''
     }
   },
   methods: {
@@ -46,21 +61,35 @@ export default {
       if(this.password == this.passwordCheck){
         createUserWithEmailAndPassword(auth, this.email, this.password)
           .then((userCredential) => {
-            // Signed in 
             this.user = userCredential.user;
             this.$router.push('/')
-            // ...
           })
           .catch((error) => {
-            this.errorMessage = error.message;
-            alert(this.errorMessage)
-            // ..
+            if(error.message == 'Firebase: Error (auth/invalid-email).'){
+              document.getElementById("email").style.borderBottomColor = "#FF5E5E"
+              this.emailError = true
+              this.emailErrorMsg = 'Invalid Email'
+            }
+            else if(error.message == 'Firebase: Error (auth/email-already-in-use).'){
+              document.getElementById("email").style.borderBottomColor = "#FF5E5E"
+              this.emailError = true
+              this.emailErrorMsg = 'Email is already in use'
+            }
+            else if(error.message == 'Firebase: Password should be at least 6 characters (auth/weak-password).'){
+              document.getElementById("password").style.borderBottomColor = "#FF5E5E"
+              this.pwdError = true
+              this.pwdErrorMsg = 'Password too weak (min 6 characters)'
+            }
         });
       }
       else{
-        alert("Passwords does not match!")
+        document.getElementById("passwordCheck").style.borderBottomColor = "#FF5E5E"
+        this.pwdCheckError = true
+        this.pwdCheckErrorMsg = 'Passwords does not match'
       }
     }
   }
 }
 </script>
+
+<style src="../css/Register/Register.css"></style>

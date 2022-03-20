@@ -14,21 +14,23 @@
       </div>
       <h2 v-if="this.loggedUser" >{{loggedUser.email}}</h2>
       <form @submit.prevent="loginUser()">
-          <p>Email</p>
-          <input type="email" placeholder="Enter your email..." v-model="email">
-          <p>Password</p>
-          <input type="password" placeholder="Enter your password..." v-model="password">
-          <button id="login" type="submit">Sign In</button>
-          <a href="/register">register here</a>
+          <div>
+            <p>Email</p>
+            <input id="email" type="email" placeholder="Enter your email..." v-model="email">
+            <p id="emailError" v-if="this.emailError">{{emailErrorMsg}}</p>
+          </div>
+          <div>
+            <p>Password</p>
+            <input id="password" type="password" placeholder="Enter your password..." v-model="password">
+            <p id="pwdError" v-if="this.pwdError">{{pwdErrorMsg}}</p>
+          </div>
+            <button id="login" type="submit">Sign In</button>
+            <a href="/register">register here</a>
       </form>
-    </div>
-    <div v-if="this.error" id="error">
-      <p>{{errorMessage}}</p>
-      <button @click="this.error = false">OK</button>
     </div>
     <div class="info">
       <p class="maintext">
-        In this project I will show how to create an authentication system with Vue.js and Firebase. You will learn how to implement authentication on your website with firebase and also some neat features that firebase has to make your development experience. Please login or register an account to start!
+        In this project I will show how to create an authentication system with Vue.js and Firebase. You will learn how to implement authentication on your website with firebase and also some neat features that firebase has to make your development experience better. Please login or register an account to start!
       </p>
       <p class="sectext">
         Please note, the account you will create is not important and will unly be used as educational material on during this demonstration.
@@ -62,12 +64,18 @@ export default {
       password: '',
       user: '',
       loggedUser: null,
-      error: false,
-      errorMessage: ''
+      emailError: false,
+      emailErrorMsg: '',
+      pwdError: false,
+      pwdErrorMsg: ''
     }
   },
   methods: {
     loginUser(){
+      this.emailError = false
+      this.pwdError = false
+      document.getElementById("password").style.borderBottomColor = "#00FFB2"
+      document.getElementById("email").style.borderBottomColor = "#00FFB2"
       signInWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
           this.user = userCredential.user;
@@ -76,22 +84,24 @@ export default {
         .catch((error) => {
           console.log(error)
           if(error == 'FirebaseError: Firebase: Error (auth/invalid-email).'){
-            this.error = true
-            this.errorMessage = 'The email is invalid.'
-            console.log("Email Invalid!")
+            document.getElementById("email").style.borderBottomColor = "#FF5E5E"
+            this.emailError = true
+            this.emailErrorMsg = 'The email is invalid'
           }
           else if(error == 'FirebaseError: Firebase: Error (auth/wrong-password).'){
-            this.error = true
-            this.errorMessage = 'The password is wrong.'
-            console.log("Wrong Password!")
+            document.getElementById("password").style.borderBottomColor = "#FF5E5E"
+            this.pwdError = true
+            this.pwdErrorMsg = 'Password does not match the email'
           }
           else if(error == 'FirebaseError: Firebase: Error (auth/user-not-found).'){
-            this.error = true
-            this.errorMessage = 'The email does not exists.'
-            console.log("Wrong email!")
+            document.getElementById("email").style.borderBottomColor = "#FF5E5E"
+            this.emailError = true
+            this.emailErrorMsg = 'The email does not exists.'
           }
         });
     }
   }
 }
 </script>
+
+<style src="../css/Login/Login.css"></style>
